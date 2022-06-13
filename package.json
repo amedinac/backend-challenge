@@ -1,0 +1,34 @@
+{
+  "name": "backend-challenge",
+  "version": "1.0.0",
+  "description": "backend challenge blog",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amedinac/backend-challenge.git"
+  },
+  "author": "Alfredo Medina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amedinac/backend-challenge/issues"
+  },
+  "homepage": "https://github.com/amedinac/backend-challenge#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.3",
+    "sequelize": "^6.20.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
