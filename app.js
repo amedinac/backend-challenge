@@ -1,13 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const { dbConnect } = require('./config/postgres');
+//const { dbConnect, sequelize } = require('./config/mysql');
+const routerApi = require('./routes');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('storage'));
+//app.use(express.static('storage'));
 const port = process.env.PORT || 3001;
 
 //Invoke Routes
@@ -17,4 +18,12 @@ app.listen(port, () => {
     console.log(`Running on http://localhost:${port}`)
 });
 
-dbConnect()
+//dbConnect();
+
+routerApi(app);
+
+
+
+
+
+

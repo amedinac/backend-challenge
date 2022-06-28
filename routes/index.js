@@ -1,18 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
 
-const PATH_ROUTES = __dirname; 
+const commentRouter = require('./comment.router');
 
-const removeExtension = (filename) => {
-    return filename.split('.').shift()
+function routerApi(app){
+    app.use('/api', router);
+    router.use('/comments', commentRouter);    
 }
 
-fs.readdirSync(PATH_ROUTES).filter((file) => {
-    const name = removeExtension(file)
-    if(name !== 'index'){
-        router.use(`/${name}`,require(`./${file}`))
-    }
-})
-
-module.exports = router;
+module.exports = routerApi;
