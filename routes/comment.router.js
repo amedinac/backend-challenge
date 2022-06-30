@@ -1,4 +1,5 @@
 const express = require('express');
+const { Comment } = require('../models/comment.model');
 
 const router = express.Router();
 
@@ -12,6 +13,22 @@ router.get('/',
             next(error);
         }
 });
+
+router.post('/', 
+    async (req, res, next) => {
+        try {
+            const { content } = req.body;
+            const comment = await Comment.create({
+                content
+            });
+            res.json(comment);
+            console.log("POST /api/comments");
+        } catch (error) {
+
+            next(error);
+        }
+});
+
 
 
 module.exports = router;

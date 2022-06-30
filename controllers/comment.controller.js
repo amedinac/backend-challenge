@@ -23,3 +23,5 @@ class CommentController {
         return res.json(comments);
     }
 }
+
+module.exports = CommentController;
