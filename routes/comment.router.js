@@ -1,33 +1,17 @@
 const express = require('express');
 const { Comment } = require('../models/comment.model');
+const { createComment, getComments, getComment, updateComment, deleteComment } = require('../controllers/comment.controller');
 
 const router = express.Router();
 
-router.get('/',
-    async (req, res, next) => {
-        try {
-            const comments = await Comment.findAll();
-            res.json(comments);
-            console.log("GET /api/comments");
-        } catch (error) {
-            next(error);
-        }
-});
+router.post('/', createComment);
+router.get('/', getComments);
+router.get('/:id', getComment);
+router.put('/:id', updateComment);
+router.delete('/:id', deleteComment);
 
-router.post('/', 
-    async (req, res, next) => {
-        try {
-            const { content } = req.body;
-            const comment = await Comment.create({
-                content
-            });
-            res.json(comment);
-            console.log("POST /api/comments");
-        } catch (error) {
 
-            next(error);
-        }
-});
+
 
 
 

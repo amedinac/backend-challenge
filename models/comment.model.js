@@ -1,4 +1,4 @@
-const {Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const { Post, PostSchema } = require('./post.model'); 
 
 const COMMENT_TABLE = 'comments';
