@@ -28,6 +28,6 @@ const dbConnect = async () => {
 };
 
 setupModels(sequelize);
-sequelize.sync();
+sequelize.sync({alter:true});
 
 module.exports = {sequelize, dbConnect}

@@ -1,4 +1,5 @@
 const {Model, DataTypes, Sequelize } = require('sequelize');
+const { User, UserSchema } = require('./user.model');
 
 const POST_TABLE = 'posts';
 
@@ -31,8 +32,15 @@ const PostSchema = {
 };
 
 class Post extends Model {
-    static associate(){
-        //Associate
+    static associate(models){
+        this.belongsTo(models.User, {
+            foreignKey: 'userId',
+            onDelete: 'CASCADE'
+        });
+        models.User.hasMany(this, {
+            foreignKey: 'userId',
+            onDelete: 'CASCADE'
+        });
     }
 
     static config(sequelize){

@@ -6,6 +6,9 @@ function setupModels(sequelize) {
     Comment.init(CommentSchema, Comment.config(sequelize));
     Post.init(PostSchema, Post.config(sequelize));
     User.init(UserSchema, User.config(sequelize));
+
+    Comment.associate(sequelize.models);
+    Post.associate(sequelize.models);
 }
 
 module.exports = setupModels;

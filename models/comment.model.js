@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const { Post, PostSchema } = require('./post.model'); 
+const { User, UserSchema } = require('./user.model'); 
 
 const COMMENT_TABLE = 'comments';
 
@@ -16,30 +17,40 @@ const CommentSchema = {
 
     },
     createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATE,
         field: 'created_at',
         defaultValue: Sequelize.NOW,
-    },/*
-    postId: {
+    },
+    post_id: {
         field: 'post_id',
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-            model: Post,
-            key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-    }*/
+        type: DataTypes.INTEGER
+    },
+    user_id: {
+        field: 'user_id',
+        type: DataTypes.INTEGER
+    }
 };
 
 class Comment extends Model {
     static associate(models){
-        this.hasMany(models.Post, {
-            as: 'posts',
-            foreignKey: 'postId',
-    });
+        this.belongsTo(models.Post, {
+            foreignKey: 'post_id',
+            onDelete: 'CASCADE'
+        });
+        models.Post.hasMany(this, {
+            foreignKey: 'post_id',
+            onDelete: 'CASCADE'
+        });
+
+        this.belongsTo(models.User, {
+            foreignKey: 'user_id',
+            onDelete: 'CASCADE'
+        });
+        models.User.hasMany(this, {
+            foreignKey: 'user_id',
+            onDelete: 'CASCADE'
+        });
 }
     static config(sequelize){
         return {

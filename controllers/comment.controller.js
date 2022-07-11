@@ -3,9 +3,11 @@ const { Comment } = require('../models/comment.model');
 
 const createComment = async (req, res) => {
         try {
-            const { content } = req.body;
+            const { content, post_id, user_id } = req.body;
             const comment = await Comment.create({
-                content
+                content,
+                post_id,
+                user_id
             });
             res.json(comment);
             console.log("POST /api/comments");
