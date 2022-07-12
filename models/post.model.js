@@ -36,12 +36,8 @@ const PostSchema = {
 };
 
 class Post extends Model {
-    static associate(models){
+    static associate(models){ 
         this.belongsTo(models.User, {
-            foreignKey: 'userId',
-            onDelete: 'CASCADE'
-        });
-        models.User.hasMany(this, {
             foreignKey: 'userId',
             onDelete: 'CASCADE'
         });

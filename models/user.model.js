@@ -32,8 +32,11 @@ const UserSchema = {
 };
 
 class User extends Model {
-    static associate(){
-        //Associate
+    static associate({ Post }){
+        this.hasMany(Post, {
+            foreignKey: 'userId',
+            onDelete: 'CASCADE'
+        });
     }
 
     static config(sequelize){
