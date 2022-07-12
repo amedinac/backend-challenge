@@ -28,6 +28,10 @@ const PostSchema = {
         type: DataTypes.DATE,
         field: 'created_at',
         defaultValue: Sequelize.NOW,
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        field: 'user_id'
     }
 };
 
